@@ -6,7 +6,8 @@ for you.
 
 ### Installation and configuration
 It is possible to install Poetry with Brew using the following command:
-`brew install poetry`.
+
+`brew install poetry`
 
 Once installed one can enable tab auto-completion for Poetry within Oh-My-Zsh by 
 typing the following commands in the terminal:
@@ -79,7 +80,9 @@ custom `pyproject.toml` configuration file.
 
 To add dependencies (also possible to add dependencies during `poetry init` 
 questionnaire!) use the following command:
+
 `poetry add pandas`
+
 This command automatically finds a suitable version constraint and installs the 
 package and subdependancies. It also adds the package requirement details in the 
 `pyproject.toml` configuration file in addition to adding it to the `poetry.lock` file.
@@ -94,11 +97,21 @@ dependencies can be added with the –dev argument. This means that Poetry will 
 manage developer dependancies like Black, isort or Flake8.
 
 To run any scripts or tests you the following command structure:
-`poetry run xxx`. For example to run a Python script use the command
-`poetry run python my_script.py` or to execute Flake8 use: `poetry run flake8`.
+
+`poetry run xxx`
+
+For example to run a Python script use the command
+
+`poetry run python my_script.py` 
+
+or to execute Flake8 use: 
+
+`poetry run flake8`.
 
 To activate the virtual environment use the following command: 
+
 `poetry shell`
+
 This command creates a new shell within which you can operate. To exit the shell 
 simply type `exit`.   
 
