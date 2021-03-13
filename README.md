@@ -145,3 +145,7 @@ However, whenever any changes are made to the versioning of your application, th
 changes. This therefore, requires Docker to re-build the image again rather than using previously 
 cached dependencies. This process will slow down the speed of the docker image builds 
 which might be a pain if continuously updating an application. 
+
+### Conclusion
+
+This repository contains the details required to install and implement Poetry within an existing or new Python project.  
