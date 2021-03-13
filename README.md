@@ -1,8 +1,9 @@
-### poetry
+### Poetry
 Poetry helps you declare, manage and install dependencies of Python projects,
 ensuring you have the right stack everywhere. It allows you to declare the
 libraries your project depends on and it will manage (install/update) them
-for you.
+for you. Another benefit of Poetry is that when removing a package all 
+sub-dependancies of that package will also be removed (if not required).
 
 ### Installation and configuration
 It is possible to install Poetry with Brew using the following command:
@@ -34,7 +35,7 @@ name = "my-package"
 version = "0.1.0"
 description = "The description of the package"
 license = "MIT"
-authors = ["Sébastien Eustace <sebastien@eustace.io>"]
+authors = ["Author <email>"]
 
 # Markdown files are supported
 readme = 'README.md'
@@ -90,13 +91,13 @@ package and subdependancies. It also adds the package requirement details in the
 Poetry automatically creates a virtual environment if one does not exist already. 
 The addition or removal of any packages will be automatically accounted for by the 
 virtual environment. If new dependencies are added, developers can refresh their 
-environment using poetry install.
+environment using `poetry install`.
 
 It is interesting to note that it is also possible to define developer-only 
-dependencies can be added with the –dev argument. This means that Poetry will also 
+dependencies, which can be added with the –dev argument. This means that Poetry will also 
 manage developer dependancies like Black, isort or Flake8.
 
-To run any scripts or tests you the following command structure:
+To run any scripts or tests use the following command structure:
 
 `poetry run xxx`
 
@@ -117,29 +118,28 @@ simply type `exit`.
 
 
 ### Pre-commit Hooks
-It is possible to install pre-commit hooks following the same method as before once 
-`pre-commit` has been added as a developer dependency. The only differences are the 
-commands used to install and run pre-commit, with these commands being pre-appended 
-with the poetry syntax of `poetry run`.
+It is possible to install pre-commit hooks using Poetry. The `pre-commit` package can be 
+added as a developer dependency. It can then be installed and executed using the 
+standard pre-commit commands pre-appended with the poetry syntax of `poetry run`.
 
 ### Poetry and Docker
-Similarly, it is possible to integrate Poetry and a Dockerfile. Often Python packages 
-need to be installed within a Docker container and therefore should be stated within
+Similarly, it is possible to integrate Poetry and Docker. Often Python packages 
+need to be installed within a Docker image and therefore should be stated within
 the Dockerfile, i.e. `RUN pip install -r requirements.txt`. However, given that 
 Poetry removes the need for a requirements file, it is necessary to replace this 
-process with:
+process. This can be achived by adding the following commands to a Dockerfile:
 
 ```
-# Install poetry:
+# Install poetry
 RUN pip install poetry
 
-# Copy in the config files:
+# Copy in the config files
 COPY pyproject.toml poetry.lock ./
 
-# Install only dependencies:
+# Install only dependencies
 RUN poetry install --no-root --no-dev
 ``` 
-However, any change to the versioning of your application the `pyproject.toml` 
-changes thus requiring Docker to re-build the image again rather than using previously 
+However, whenever any changes are made to the versioning of your application, the `pyproject.toml` 
+changes. This therefore, requires Docker to re-build the image again rather than using previously 
 cached dependencies. This process will slow down the speed of the docker image builds 
-which might be a pain of continuously updating the application. 
+which might be a pain if continuously updating an application. 
