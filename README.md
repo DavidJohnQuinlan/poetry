@@ -1,4 +1,6 @@
-### Poetry
+## Poetry Python package and dependency manager
+
+### Introduction
 Poetry helps you declare, manage and install dependencies of Python projects,
 ensuring you have the right stack everywhere. It allows you to declare the
 libraries your project depends on and it will manage (install/update) them
